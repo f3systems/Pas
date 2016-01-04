@@ -13,7 +13,8 @@ namespace F3Systems.Pas.Data
     {
         static void Main(string[] args)
         {
-            ISessionFactory factory = new SessionFactory(new EventStorage()); IBookStateQuery query = new BookStateQuery();
+            ISessionFactory factory = new SessionFactory(new EventStorage());
+            IBookStateQuery query = new BookStateQuery();
             DomainEvents.RegisterHandler(() => new BookStateHandler(query));
             DomainEvents.RegisterHandler(() => new LateReturnNotifier());
 
@@ -22,9 +23,7 @@ namespace F3Systems.Pas.Data
             using (var session = factory.OpenSession())
             {
                 var books = new BookRepository();
-                books.Add(new Book(bookId,
-                   "The Lord of the Rings",
-                   "0-618-15396-9"));
+                books.Add(new Book(bookId, "The Lord of the Rings", "0-618-15396-9"));
                 session.SubmitChanges();
             }
 
@@ -34,9 +33,7 @@ namespace F3Systems.Pas.Data
             {
                 var books = new BookRepository();
                 var book = books[bookId];
-                book.Lend("Alice",
-                     new DateTime(2009, 11, 2),
-                     TimeSpan.FromDays(14));
+                book.Lend("Alice", new DateTime(2009, 11, 2), TimeSpan.FromDays(14));
 
                 session.SubmitChanges();
             }
@@ -58,9 +55,7 @@ namespace F3Systems.Pas.Data
             {
                 var books = new BookRepository();
                 var book = books[bookId];
-                book.Lend("Bob",
-                      new DateTime(2009, 11, 9),
-                      TimeSpan.FromDays(14));
+                book.Lend("Bob", new DateTime(2009, 11, 9), TimeSpan.FromDays(14));
 
                 session.SubmitChanges();
             }
@@ -76,16 +71,16 @@ namespace F3Systems.Pas.Data
             }
 
             ShowBooks(query);
-
-            Console.ReadLine();
         }
 
         private static void ShowBooks(IBookStateQuery query)
         {
             foreach (var state in query.GetBookStates())
-                Console.WriteLine("{0} is {1}.",
-                       state.Title,
-                       state.Lent ? "lent" : "home");
+                Console.WriteLine(
+                    "{0} is {1}.",
+                    state.Title,
+                    state.Lent ? "lent" : "home");
+            Console.ReadLine();
         }
     }
 }
