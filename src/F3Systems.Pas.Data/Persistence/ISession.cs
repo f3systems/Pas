@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace F3Systems.Pas.Data.Persistence
 {
-    public interface ISession
+    public interface ISession : IDisposable
     {
         void SubmitChanges();
     }

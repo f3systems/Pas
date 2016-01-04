@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{1E9B0626-6623-485E-AC24-1C3790E4F177}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>F3Systems.Pas.Data</RootNamespace>
     <AssemblyName>F3Systems.Pas.Data</AssemblyName>
@@ -29,6 +29,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>F3Systems.Pas.Data.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -40,6 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Books\Book.cs" />
+    <Compile Include="Books\BookId.cs" />
+    <Compile Include="Books\BookRepository.cs" />
+    <Compile Include="Books\BookState.cs" />
+    <Compile Include="Books\BookStateHandler.cs" />
+    <Compile Include="Books\BookStateQuery.cs" />
+    <Compile Include="Books\IBookRepository.cs" />
+    <Compile Include="Books\IBookStateQuery.cs" />
+    <Compile Include="Books\LateReturnNotifier.cs" />
+    <Compile Include="Books\StateChangeEvents.cs" />
     <Compile Include="Events\AggregateRoot.cs" />
     <Compile Include="Events\AggregateRootStorage.cs" />
     <Compile Include="Events\DomainEvents.cs" />
@@ -55,6 +68,7 @@
     <Compile Include="Persistence\Repository.cs" />
     <Compile Include="Persistence\Session.cs" />
     <Compile Include="Persistence\SessionFactory.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
